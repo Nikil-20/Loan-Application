@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class=" bg-gradient-to-r from-blue-800 to-blue-300  flex items-center justify-center min-h-screen">
+    <div class="container bg-gray-300 p-8 rounded-lg shadow-lg">
+        <h1 class="text-3xl font-bold mb-4">Loan Application</h1>
+        <form id="loanForm">
+            <div class="mb-4">
+                <label for="fname" class="block text-gray-700  font-bold">Full Name:</label>
+                <input type="text" name="fname" id="fname" placeholder="Enter full name" required class="mt-1 p-2 w-full border rounded">
+                <span id="fnameError" class="error text-red-500 text-sm"></span>
+            </div>
+
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 font-bold">Email:</label>
+                <input type="email" name="email" id="email" placeholder="Enter email" required class="mt-1 p-2 w-full border rounded">
+                <span id="emailError" class="error text-red-500 text-sm"></span>
+            </div>
+
+            <div class="mb-4">
+                <label for="pan" class="block text-gray-700 font-bold">PAN:</label>
+                <input type="text" name="pan" id="pan" placeholder="Enter PAN number" required class="mt-1 p-2 w-full border rounded">
+                <span id="panError" class="error text-red-500 text-sm"></span>
+            </div>
+
+            <div class="mb-4">
+                <label for="loan" class="block text-gray-700 font-bold">Loan Amount:</label>
+                <input type="number" name="loan" id="loan" placeholder="Enter loan amount" required class="mt-1 p-2 w-full border rounded">
+                <span id="loanError" class="error text-red-500 text-sm"></span>
+                <span id="loanAmountWords" class="block text-gray-700 mt-1"></span>
+            </div>
+
+            <button type="button" onclick="submitForm()" id="btn" class="bg-blue-600 text-white p-2  rounded hover:bg-blue-500">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+
+            // Full Name validation
+            const fname = document.getElementById("fname").value;
+            const fnameError = document.getElementById("fnameError");
+            const namePattern = /^[A-Za-z]{4,}\s[A-Za-z]{4,}$/;
+            if (!namePattern.test(fname)) {
+                fnameError.textContent = "Please enter a valid full name with at least two words, each with a minimum of 4 characters.";
+                isValid = false;
+            } else {
+                fnameError.textContent = "";
+            }
+
+            // Email validation
+            const email = document.getElementById("email").value;
+            const emailError = document.getElementById("emailError");
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailPattern.test(email)) {
+                emailError.textContent = "Please enter a valid email address.";
+                isValid = false;
+            } else {
+                emailError.textContent = "";
+            }
+
+            // PAN validation
+            const pan = document.getElementById("pan").value;
+            const panError = document.getElementById("panError");
+            const panPattern = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
+            if (!panPattern.test(pan)) {
+                panError.textContent = "Please enter a valid PAN in the format ABCDE1234F.";
+                isValid = false;
+            } else {
+                panError.textContent = "";
+            }
+
+            // Loan Amount validation
+            const loan = document.getElementById("loan").value;
+            const loanError = document.getElementById("loanError");
+            const loanAmountWords = document.getElementById("loanAmountWords");
+            if (loan.length > 9 || isNaN(loan) || loan <= 0) {
+                loanError.textContent = "Please enter a valid loan amount up to 9 digits.";
+                isValid = false;
+            } else {
+                loanError.textContent = "";
+                loanAmountWords.textContent = numberToWords(loan) + " Rs.";
+            }
+
+            return isValid;
+        }
+
+        function submitForm() {
+            if (validateForm()) {
+                const mainOtp = Math.floor(1000 + Math.random() * 9000);
+                alert(mainOtp);
+
+                localStorage.setItem('mainOtp', mainOtp);
+
+                const fname = document.getElementById("fname").value;
+                const email = document.getElementById("email").value;
+                const pan = document.getElementById("pan").value;
+                const loan = document.getElementById("loan").value;
+
+               
+
+                window.location.assign('/confirmation.html');
+            }
+        }
+
+        // Function to convert number to words (basic implementation)
+        function numberToWords(number) {
+        }
+    </script>
+</body>
+
+</html>

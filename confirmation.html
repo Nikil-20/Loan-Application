@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Confirmation</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-800 to-blue-300">
+    <div class="container bg-gray-300 p-8 rounded-lg shadow-lg">
+        <h1 class="text-3xl font-bold mb-4">OTP Confirmation</h1>
+        <p id="confirmationMessage" class="mb-4 font-bold"></p>
+        <input type="text" placeholder="Enter the OTP" id="userOtp" required
+            class="mt-1 p-2 w-full border rounded mb-4">
+        <span id="otpError" class="error text-red-500 text-sm mb-4 block"></span>
+        <button id="validateBtn" class="bg-blue-600 text-white p-2 rounded hover:bg-blue-500 ">Validate</button>
+    </div>
+
+    <script>
+        // Retrieve URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const fname = urlParams.get('fname');
+        const email = urlParams.get('email');
+
+        // Display confirmation message
+        document.getElementById('confirmationMessage').textContent = `Dear user ,\n\nThank you for your inquiry. A 4 digit verification number has been sent to your email. Please enter it in the following box and submit for confirmation.`;
+
+        let count = 0;
+        document.querySelector("#validateBtn").addEventListener('click', () => {
+            if (count < 3) {
+                var userOtp = parseInt(document.querySelector("#userOtp").value);
+                var mainOtp = parseInt(localStorage.getItem('mainOtp'));
+
+                if (userOtp === mainOtp) {
+                    document.getElementById('otpError').textContent = "";
+                    window.location.assign('/successful.html');
+
+                } else {
+                    alert(`Validation failed. ${3 - count} attempts left.`); 
+                    document.getElementById('otpError').textContent = "Invalid OTP. Please try again.";
+                }
+                count++;
+            } else {
+                alert("Invalid OTP");
+                window.location.assign('/error.html');
+            }
+        });
+    </script>
+</body>
+
+</html>
