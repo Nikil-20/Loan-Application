@@ -1,20 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmation Successful</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(to right, #22543d, #c6f6d5);
+            text-align: center;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: bold;
+            color: #48bb78;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 0.5rem;
+        }
+    </style>
 </head>
-<body class="flex items-center justify-center min-h-screen bg-gradient-to-r from-green-800 to-green-200 text-center font-bold">
+
+<body>
     <div class="animate__animated animate__bounceInDown">
-        <div class="container bg-white p-8 rounded-lg shadow-lg">
-            <h1 class="text-4xl font-bold text-green-500 mb-4">CONFIRMATION SUCESSFUL</h1>
-            <p class="mb-2">Dear User,</p>
-            <p class="mb-2">Your loan application has been successfully validated.</p>
+        <div class="container">
+            <h1>CONFIRMATION SUCCESSFUL</h1>
+            <p>Dear User,</p>
+            <p>Your loan application has been successfully validated.</p>
             <p>Thank you for choosing our service.</p>
         </div>
     </div>
 </body>
+
 </html>

@@ -5,17 +5,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OTP Confirmation</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(to right, #2a4365, #63b3ed);
+            margin: 0;
+        }
+
+        .container {
+            background-color: #e2e8f0;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 1.875rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .font-bold {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            margin-top: 0.25rem;
+            padding: 0.5rem;
+            width: 100%;
+            border: 1px solid #cbd5e0;
+            border-radius: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .error {
+            color: #f56565;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        button {
+            background-color: #3182ce;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2b6cb0;
+        }
+    </style>
 </head>
 
-<body class="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-800 to-blue-300">
-    <div class="container bg-gray-300 p-8 rounded-lg shadow-lg">
-        <h1 class="text-3xl font-bold mb-4">OTP Confirmation</h1>
+<body>
+    <div class="container">
+        <h1>OTP Confirmation</h1>
         <p id="confirmationMessage" class="mb-4 font-bold"></p>
-        <input type="text" placeholder="Enter the OTP" id="userOtp" required
-            class="mt-1 p-2 w-full border rounded mb-4">
+        <input type="text" placeholder="Enter the OTP" id="userOtp" required class="mt-1 p-2 w-full border rounded mb-4">
         <span id="otpError" class="error text-red-500 text-sm mb-4 block"></span>
-        <button id="validateBtn" class="bg-blue-600 text-white p-2 rounded hover:bg-blue-500 ">Validate</button>
+        <button id="validateBtn" class="bg-blue-600 text-white p-2 rounded hover:bg-blue-500">Validate</button>
     </div>
 
     <script>
@@ -38,7 +97,7 @@
                     window.location.assign('/successful.html');
 
                 } else {
-                    alert(`Validation failed. ${3 - count} attempts left.`); 
+                    alert(`Validation failed. ${3 - count} attempts left.`);
                     document.getElementById('otpError').textContent = "Invalid OTP. Please try again.";
                 }
                 count++;
